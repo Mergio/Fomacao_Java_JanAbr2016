@@ -4,11 +4,11 @@ public class ShoppingCart {
 	/*
 	 * Actions 
 	 */
-	float total;
-	boolean finish;
-	Customer customer;
-	Product[] products;
-	int cartSize;
+	private float total;
+	private boolean finish;
+	private Customer customer;
+	private Product[] products;
+	private int cartSize;
 	
 	/*
 	 * 
@@ -29,7 +29,7 @@ public class ShoppingCart {
 		
 		if(cartSize<products.length){
 			products[cartSize++] = product;
-			total += product.price;
+			total += product.getPrice();
 		}
 		
 	}
@@ -40,8 +40,8 @@ public class ShoppingCart {
 			return;
 		
 		for (int i = 0; i < products.length; i++) {
-			if(products[i].id == id){
-				total -= products[i].price;
+			if(products[i].getId() == id){
+				total -= products[i].getPrice();
 				products[i] = products[--cartSize];
 				products[cartSize] = null;
 				break;
@@ -62,8 +62,28 @@ public class ShoppingCart {
 		
 		for (int i = 0; i < products.length; i++) {
 			if(products[i] != null)
-				System.out.println(products[i].id);
+				System.out.println(products[i].getId());
 		}
 	}
 	
+	public float getTotal(){
+		return total;
+	}
+	
+	public void setProducts(int size){
+		if(products==null)
+			products = new Product[size];
+	}
+	
+	public Product[] getProducts(){
+		return products;
+	}
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
 }
